@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 // BOOK CONTROLLER
+@CrossOrigin(origins = "http://localhost:63342")
 @RestController
 public class BookController {
 
@@ -37,22 +39,23 @@ public class BookController {
     }
 
     // GET BOOK BY ID
-@GetMapping("/books/{id}")
-public Book getBookById(@PathVariable Long id) {
-    return bookService.getBookById(id);
-}
+    @GetMapping("/books/{id}")
+    public Book getBookById(@PathVariable Long id) {
+        return bookService.getBookById(id);
+    }
 
+    // UPDATE BOOK
+    @PutMapping("/books/{id}")
+    public Book updateBook(
+            @PathVariable Long id,
+            @RequestBody Book updatedBook
+    ) {
+        return bookService.updateBook(id, updatedBook);
+    }
 
-// UPDATE BOOK
-@PutMapping("/books/{id}")
-public Book updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
-    return bookService.updateBook(id, updatedBook);
-}
-
-// DELETE BOOK
-@DeleteMapping("/books/{id}")
-public void deleteBook(@PathVariable Long id) {
-    bookService.deleteBook(id);
-}
-
+    // DELETE BOOK
+    @DeleteMapping("/books/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+    }
 }
