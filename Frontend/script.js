@@ -3,6 +3,12 @@ const dashboardPage = document.getElementById("dashboard-page");
 const libraryPage = document.getElementById("library-page");
 const addBookPage = document.getElementById("add-book-page");
 
+// DASHBOARD STAT CARDS
+const totalBooksCard = document.getElementById("total-books-card");
+const readingCard = document.getElementById("reading-card");
+const finishedCard = document.getElementById("finished-card");
+const wantToReadCard = document.getElementById("want-to-read-card");
+
 // NAVIGATION BUTTONS
 const dashboardBtn = document.getElementById("dashboard-btn");
 const libraryBtn = document.getElementById("library-btn");
@@ -21,12 +27,15 @@ let books = [];
 
 // NAVIGATION
 dashboardBtn.addEventListener("click", function () {
+    // SAVE CURRENT PAGE IN URL
+    window.location.hash = "dashboard";
     dashboardPage.classList.remove("hidden");
     libraryPage.classList.add("hidden");
     addBookPage.classList.add("hidden");
 });
 
 libraryBtn.addEventListener("click", function () {
+    window.location.hash ="library";
     dashboardPage.classList.add("hidden");
     addBookPage.classList.add("hidden");
     libraryPage.classList.remove("hidden");
@@ -35,8 +44,57 @@ libraryBtn.addEventListener("click", function () {
     setActiveFilter("all");
     displayLibrary("all", searchInput.value.trim());
 });
+// CURRENTLY READING CARD
+readingCard.addEventListener("click", function () {
 
+    // SAVE CURRENT PAGE IN URL
+    window.location.hash = "library";
+
+    // OPEN MY LIBRARY
+    dashboardPage.classList.add("hidden");
+    addBookPage.classList.add("hidden");
+    libraryPage.classList.remove("hidden");
+
+    // SHOW CURRENTLY READING BOOKS
+    currentFilter = "reading";
+    setActiveFilter("reading");
+    displayLibrary("reading", searchInput.value.trim());
+});
+// FINISHED CARD
+finishedCard.addEventListener("click", function () {
+
+    // SAVE CURRENT PAGE IN URL
+    window.location.hash = "library";
+
+    // OPEN MY LIBRARY
+    dashboardPage.classList.add("hidden");
+    addBookPage.classList.add("hidden");
+    libraryPage.classList.remove("hidden");
+
+    // SHOW FINISHED BOOKS
+    currentFilter = "finished";
+    setActiveFilter("finished");
+    displayLibrary("finished", searchInput.value.trim());
+});
+// WANT TO READ CARD
+wantToReadCard.addEventListener("click", function () {
+
+    // SAVE CURRENT PAGE IN URL
+    window.location.hash = "library";
+
+    // OPEN MY LIBRARY
+    dashboardPage.classList.add("hidden");
+    addBookPage.classList.add("hidden");
+    libraryPage.classList.remove("hidden");
+
+    // SHOW WANT TO READ BOOKS
+    currentFilter = "want-to-read";
+    setActiveFilter("want-to-read");
+    displayLibrary("want-to-read", searchInput.value.trim());
+});
 addBookBtn.addEventListener("click", function () {
+// SAVE CURRENT PAGE IN URL
+window.location.hash = "add-book";
     // Reset edit mode when opening Add Book normally
     editingBookId = null;
     bookForm.reset();
@@ -50,6 +108,8 @@ addBookBtn.addEventListener("click", function () {
 });
 
 viewAllBtn.addEventListener("click", function () {
+// SAVE CURRENT PAGE IN URL
+window.location.hash = "library";
     dashboardPage.classList.add("hidden");
     addBookPage.classList.add("hidden");
     libraryPage.classList.remove("hidden");
@@ -60,6 +120,22 @@ viewAllBtn.addEventListener("click", function () {
     displayLibrary("reading", searchInput.value.trim());
 });
 
+// TOTAL BOOKS CARD
+totalBooksCard.addEventListener("click", function () {
+
+    // SAVE CURRENT PAGE IN URL
+    window.location.hash = "library";
+
+    // OPEN MY LIBRARY
+    dashboardPage.classList.add("hidden");
+    addBookPage.classList.add("hidden");
+    libraryPage.classList.remove("hidden");
+
+    // SHOW ALL BOOKS
+    currentFilter = "all";
+    setActiveFilter("all");
+    displayLibrary("all", searchInput.value.trim());
+});
 
 // ADD OR EDIT BOOK
 bookForm.addEventListener("submit", async function (event) {
@@ -625,3 +701,18 @@ async function loadBooks() {
 
 // INITIAL LOAD
 loadBooks();
+
+if (window.location.hash === "#library") {
+    dashboardPage.classList.add("hidden");
+    addBookPage.classList.add("hidden");
+    libraryPage.classList.remove("hidden");
+
+    currentFilter = "all";
+    setActiveFilter("all");
+    displayLibrary("all", searchInput.value.trim());
+}
+if (window.location.hash === "#add-book") {
+    dashboardPage.classList.add("hidden");
+    libraryPage.classList.add("hidden");
+    addBookPage.classList.remove("hidden");
+}
