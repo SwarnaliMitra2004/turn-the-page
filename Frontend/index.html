@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Book Tracker</title>
+
+    <!-- ---------------- STYLESHEET ---------------- -->
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+
+<body>
+    <!-- ---------------- NAVIGATION BAR ------------------ -->
+    
+    <nav class="navbar">
+
+        <h1>📚 Book Tracker</h1>
+
+        <div class="nav-links">
+
+            <button id="dashboard-btn">
+                Dashboard
+            </button>
+
+            <button id="library-btn">
+                My Library
+            </button>
+
+            <button id="add-book-nav-btn">
+                Add Book
+            </button>
+
+        </div>
+
+    </nav>
+
+    <!-- ---------------- MAIN CONTENT -------------------- -->
+
+    <main>
+
+        <!-- ---------------- DASHBOARD PAGE ------------------ -->
+
+        <section id="dashboard-page">
+
+            <h2>My Reading Dashboard</h2>
+
+            <p class="dashboard-subtitle">
+                Track your books and your reading journey.
+            </p>
+
+
+            <!-- ---------------- DASHBOARD STATS ---------------- -->
+
+            <section class="stats">
+
+                <div class="stat-card">
+
+                    <h3>Total Books</h3>
+
+                    <p id="total-books">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3>Currently Reading</h3>
+
+                    <p id="reading-count">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3>Finished</h3>
+
+                    <p id="finished-count">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3>Want to Read</h3>
+
+                    <p id="want-count">
+                        0
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ---------------- CURRENTLY READING ---------------- -->
+
+            <section class="currently-reading">
+
+                <div class="section-header">
+
+                    <h2>
+                        Currently Reading
+                    </h2>
+
+                    <button id="view-all-btn">
+                        View All
+                    </button>
+
+                </div>
+
+
+                <!--
+                    JavaScript automatically adds
+                    currently-reading books here
+                -->
+
+                <div id="currently-reading-list"></div>
+
+            </section>
+
+        </section>
+
+        <!-- ---------------- MY LIBRARY PAGE ----------------- -->
+
+        <section
+            id="library-page"
+            class="hidden"
+        >
+
+            <div class="section-header">
+
+                <h2>
+                    My Library 📚
+                </h2>
+
+            </div>
+
+            <!-- ---------------- LIBRARY SEARCH ---------------- -->
+
+<div class="library-search">
+
+    <input
+        type="text"
+        id="search-input"
+        placeholder="Search by title or author..."
+    >
+
+</div>
+
+            <!-- ---------------- LIBRARY FILTER BUTTONS ---------------- -->
+
+            <div class="library-filters">
+
+                <button
+                    class="filter-btn active"
+                    data-filter="all"
+                >
+                    All
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-filter="reading"
+                >
+                    Reading
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-filter="finished"
+                >
+                    Finished
+                </button>
+
+
+                <button
+                    class="filter-btn"
+                    data-filter="want-to-read"
+                >
+                    Want to Read
+                </button>
+
+            </div>
+
+
+            <!--
+                JavaScript automatically
+                adds library books here
+            -->
+
+            <div id="library-list"></div>
+
+        </section>
+
+        <!-- ---------------- ADD BOOK PAGE ------------------- -->
+
+        <section
+            id="add-book-page"
+            class="hidden"
+        >
+
+            <h2>
+                Add a Book 📖
+            </h2>
+
+
+            <!-- ---------------- ADD BOOK FORM ---------------- -->
+
+            <form id="book-form">
+
+
+                <!-- ---------------- BOOK TITLE ---------------- -->
+
+                <div class="form-group">
+
+                    <label for="title">
+                        Book Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="e.g. Heir of Fire"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ---------------- AUTHOR ---------------- -->
+
+                <div class="form-group">
+
+                    <label for="author">
+                        Author
+                    </label>
+
+                    <input
+                        type="text"
+                        id="author"
+                        placeholder="e.g. Sarah J. Maas"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ---------------- TOTAL PAGES ---------------- -->
+
+                <div class="form-group">
+
+                    <label for="total-pages">
+                        Total Pages
+                    </label>
+
+                    <input
+                        type="number"
+                        id="total-pages"
+                        placeholder="565"
+                        min="1"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ---------------- CURRENT PAGE ---------------- -->
+
+                <div class="form-group">
+
+                    <label for="current-page">
+                        Current Page
+                    </label>
+
+                    <input
+                        type="number"
+                        id="current-page"
+                        placeholder="0"
+                        min="0"
+                    >
+
+                </div>
+
+
+
+                <!-- ---------------- READING STATUS ---------------- -->
+
+                <div class="form-group">
+
+                    <label for="status">
+                        Reading Status
+                    </label>
+
+                    <select id="status">
+
+                        <option value="want-to-read">
+                            Want to Read
+                        </option>
+
+                        <option value="reading">
+                            Currently Reading
+                        </option>
+
+                        <option value="finished">
+                            Finished
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ---------------- BOOK COVER URL ---------------- -->
+
+                <div class="form-group">
+
+                    <label for="cover">
+                        Book Cover URL
+                    </label>
+
+                    <input
+                        type="url"
+                        id="cover"
+                        placeholder="https://..."
+                    >
+
+                </div>
+
+
+
+                <!-- ---------------- SUBMIT BUTTON ---------------- -->
+
+                <button
+                    type="submit"
+                    class="add-book-btn"
+                >
+                    + Add Book
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <!-- ---------------- JAVASCRIPT ---------------------- -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

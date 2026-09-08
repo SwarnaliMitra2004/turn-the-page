@@ -1,0 +1,724 @@
+/* ================================================== */
+/* ---------------- GOOGLE FONT --------------------- */
+/* ================================================== */
+
+@import url(
+    'https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&display=swap'
+);
+
+
+
+/* ================================================== */
+/* ---------------- GLOBAL RESET -------------------- */
+/* ================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* ================================================== */
+/* ---------------- BODY ---------------------------- */
+/* ================================================== */
+
+body {
+    font-family: Georgia, serif;
+
+    background-color: #F5F5EF;
+
+    color: #41483D;
+}
+
+
+
+/* ================================================== */
+/* ---------------- HIDDEN ELEMENTS ----------------- */
+/* ================================================== */
+
+.hidden {
+    display: none;
+}
+
+
+
+/* ================================================== */
+/* ---------------- NAVIGATION BAR ------------------ */
+/* ================================================== */
+
+.navbar {
+    background-color: #7D8975;
+
+    padding: 18px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+
+/* ---------------- NAVBAR TITLE ---------------- */
+
+.navbar h1 {
+    font-size: 24px;
+
+    color: #FAFAF6;
+}
+
+
+
+/* ---------------- NAVIGATION BUTTON CONTAINER ---------------- */
+
+.nav-links {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+
+/* ---------------- NAVIGATION BUTTONS ---------------- */
+
+.nav-links button {
+    border: none;
+
+    background-color: #C4CCB8;
+
+    color: #41483D;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+
+
+/* ================================================== */
+/* ---------------- MAIN CONTENT -------------------- */
+/* ================================================== */
+
+main {
+    padding: 25px 20px;
+}
+
+
+
+/* ---------------- PAGE HEADINGS ---------------- */
+
+main > section > h2 {
+    margin-bottom: 8px;
+}
+
+
+
+/* ---------------- DASHBOARD SUBTITLE ---------------- */
+
+.dashboard-subtitle {
+    color: #747B70;
+}
+
+
+
+/* ================================================== */
+/* ---------------- DASHBOARD STATS ----------------- */
+/* ================================================== */
+
+.stats {
+    margin-top: 25px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+
+
+/* ---------------- INDIVIDUAL STAT CARD ---------------- */
+
+.stat-card {
+    background-color: #FAFAF6;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid #E5E6DE;
+
+    box-shadow:
+        0 2px 8px rgba(65, 72, 61, 0.05);
+}
+
+
+
+/* ---------------- STAT CARD TITLE ---------------- */
+
+.stat-card h3 {
+    font-size: 14px;
+
+    color: #7D8975;
+
+    /*
+        Keeps all numbers aligned,
+        even when a title wraps to two lines.
+    */
+    min-height: 36px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    margin-bottom: 8px;
+}
+
+
+
+/* ---------------- STAT CARD NUMBER ---------------- */
+
+.stat-card p {
+    font-family:
+        'Nunito',
+        sans-serif;
+
+    font-size: 32px;
+
+    font-weight: 800;
+
+    color: #41483D;
+}
+
+
+
+/* ================================================== */
+/* ---------------- SECTION HEADER ------------------ */
+/* ================================================== */
+
+.section-header {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+
+
+/* ---------------- SECTION TITLE ---------------- */
+
+.section-header h2 {
+    font-size: 20px;
+}
+
+
+
+/* ---------------- VIEW ALL BUTTON ---------------- */
+
+.section-header button {
+    border: none;
+
+    background: none;
+
+    color: #7D8975;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+
+/* ================================================== */
+/* ---------------- CURRENTLY READING --------------- */
+/* ================================================== */
+
+.currently-reading {
+    margin-top: 35px;
+}
+
+
+
+/* ================================================== */
+/* ---------------- BOOK CARD ----------------------- */
+/* ================================================== */
+
+.book-card {
+    background-color: #FAFAF6;
+
+    padding: 15px;
+
+    margin-bottom: 14px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid #E5E6DE;
+
+    display: flex;
+
+    gap: 15px;
+
+    box-shadow:
+        0 2px 8px rgba(65, 72, 61, 0.05);
+}
+
+
+
+/* ================================================== */
+/* ---------------- BOOK COVER ---------------------- */
+/* ================================================== */
+
+.book-cover {
+    width: 75px;
+
+    height: 105px;
+
+    background-color: #C4CCB8;
+
+    border-radius: 7px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    font-size: 28px;
+
+    flex-shrink: 0;
+}
+
+
+
+/* ---------------- BOOK COVER IMAGE ---------------- */
+
+.book-cover img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+
+/* ---------------- BOOK INFORMATION ---------------- */
+
+.book-info {
+    flex: 1;
+}
+
+
+
+/* ---------------- BOOK TITLE ---------------- */
+
+.book-info h3 {
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+
+
+/* ---------------- BOOK AUTHOR ---------------- */
+
+.book-info > p {
+    font-size: 13px;
+
+    color: #747B70;
+
+    margin-bottom: 10px;
+}
+
+/* ---------------- BOOK STATUS --------------------- */
+
+.book-status {
+    display: inline-block;
+
+    background-color: #EDF0E8;
+
+    color: #687360;
+
+    padding: 5px 9px;
+
+    border-radius: 12px;
+
+    font-size: 11px;
+
+    margin-bottom: 12px;
+}
+
+/* ---------------- PROGRESS INFORMATION ------------ */
+
+.progress-info {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    gap: 10px;
+
+    font-size: 12px;
+
+    color: #747B70;
+
+    margin-bottom: 7px;
+}
+
+/* ---------------- PROGRESS BAR -------------------- */
+
+.progress-bar {
+    width: 100%;
+
+    height: 7px;
+
+    background-color: #E3E6DD;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+
+/* ---------------- FILLED PROGRESS ---------------- */
+
+.progress {
+    height: 100%;
+
+    background-color: #7D8975;
+
+    border-radius: 10px;
+}
+
+/* ---------------- ADD BOOK FORM ------------------- */
+
+#add-book-page h2 {
+    margin-bottom: 20px;
+}
+
+
+
+/* ---------------- FORM CONTAINER ---------------- */
+
+#book-form {
+    background-color: #FAFAF6;
+
+    padding: 20px;
+
+    border:
+        1px solid #E5E6DE;
+
+    border-radius: 12px;
+}
+
+
+
+/* ---------------- FORM GROUP ---------------- */
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+
+
+/* ---------------- FORM LABEL ---------------- */
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    color: #596052;
+}
+
+
+
+/* ---------------- FORM INPUTS ---------------- */
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    padding: 12px;
+
+    border:
+        1px solid #D8DCD2;
+
+    border-radius: 8px;
+
+    background-color: #FFFFFF;
+
+    color: #41483D;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+
+/* ---------------- INPUT FOCUS ---------------- */
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #7D8975;
+}
+
+/* ---------------- ADD BOOK BUTTON ----------------- */
+
+.add-book-btn {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #7D8975;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* ---------------- LIBRARY FILTERS ----------------- */
+
+.library-filters {
+    display: flex;
+
+    gap: 8px;
+
+    margin: 18px 0 22px;
+
+    overflow-x: auto;
+
+    padding-bottom: 5px;
+}
+
+
+
+/* ---------------- FILTER BUTTON ---------------- */
+
+.filter-btn {
+    border:
+        1px solid #C4CCB8;
+
+    background-color: #FAFAF6;
+
+    color: #596052;
+
+    padding: 9px 14px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+
+/* ---------------- FILTER BUTTON HOVER ---------------- */
+
+.filter-btn:hover {
+    background-color: #E8ECE2;
+}
+
+
+
+/* ---------------- ACTIVE FILTER BUTTON ---------------- */
+
+.filter-btn.active {
+    background-color: #7D8975;
+
+    color: white;
+
+    border-color: #7D8975;
+}
+
+/* ---------------- UPDATE PROGRESS BUTTON ---------- */
+
+.update-progress-btn {
+    margin-top: 14px;
+
+    padding: 8px 13px;
+
+    border:
+        1px solid #C4CCB8;
+
+    border-radius: 18px;
+
+    background-color: #F1F3EC;
+
+    color: #596052;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+
+/* ---------------- UPDATE BUTTON HOVER ---------------- */
+
+.update-progress-btn:hover {
+    background-color: #DDE3D5;
+}
+
+/* ---------------- DELETE BOOK BUTTON -------------- */
+
+.delete-book-btn {
+    margin-top: 14px;
+
+    margin-left: 7px;
+
+    padding: 8px 13px;
+
+    border:
+        1px solid #D8C4C0;
+
+    border-radius: 18px;
+
+    background-color: #F8EFED;
+
+    color: #8A5F58;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+
+/* ---------------- DELETE BUTTON HOVER ---------------- */
+
+.delete-book-btn:hover {
+    background-color: #EEDDD9;
+}
+
+/* ---------------- EMPTY MESSAGE ------------------- */
+
+.empty-message {
+    color: #81887B;
+
+    font-size: 14px;
+
+    padding: 15px 0;
+}
+
+/* ---------------- RESPONSIVE DESIGN --------------- */
+
+@media (min-width: 700px) {
+
+    /* NAVBAR BECOMES HORIZONTAL */
+
+    .navbar {
+        flex-direction: row;
+
+        justify-content:
+            space-between;
+
+        align-items: center;
+    }
+
+
+    /* MAIN CONTENT WIDTH */
+
+    main {
+        max-width: 900px;
+
+        margin: auto;
+    }
+
+
+    /* FOUR STATS IN ONE ROW */
+
+    .stats {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+    /* ================================================== */
+/* ---------------- LIBRARY SEARCH ------------------ */
+/* ================================================== */
+
+.library-search {
+    margin-top: 18px;
+}
+
+
+/* ---------------- SEARCH INPUT ---------------- */
+
+.library-search input {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #D8DCD2;
+    border-radius: 10px;
+
+    background-color: #FAFAF6;
+    color: #41483D;
+
+    font-family: Georgia, serif;
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+/* ---------------- SEARCH INPUT FOCUS ---------------- */
+
+.library-search input:focus {
+    border-color: #7D8975;
+
+    box-shadow:
+        0 0 0 2px rgba(125, 137, 117, 0.10);
+}
+
+
+/* ---------------- SEARCH PLACEHOLDER ---------------- */
+
+.library-search input::placeholder {
+    color: #9A9F95;
+}
+
+}
