@@ -62,7 +62,7 @@ viewAllBtn.addEventListener("click", function () {
 
 
 // ADD OR EDIT BOOK
-bookForm.addEventListener("submit", function (event) {
+bookForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     // GET FORM VALUES
@@ -95,10 +95,48 @@ bookForm.addEventListener("submit", function (event) {
         finalCurrentPage = totalPages;
     }
 
-    // ADD NEW BOOK
-    if (editingBookId === null) {
-        const book = {
-            id: Date.now(),
+// ADD NEW BOOK
+if (editingBookId === null) {
+
+    const book = {
+        title: title,
+        author: author,
+        totalPages: totalPages,
+        currentPage: finalCurrentPage,
+        status: status,
+        cover: cover
+    };
+
+    try {
+        const response = await fetch("http://localhost:8080/books", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(book)
+        });
+
+        // CHECK IF BACKEND REQUEST FAILED
+        if (!response.ok) {
+            throw new Error("Failed to add book.");
+        }
+
+        const savedBook = await response.json();
+
+        books.push(savedBook);
+
+        alert(`"${savedBook.title}" added successfully! 📚`);
+
+    } catch (error) {
+        console.error("Error adding book:", error);
+        alert("Could not add book.");
+        return;
+    }
+}
+
+    // EDIT EXISTING BOOK
+    else {
+        const updatedBook = {
             title: title,
             author: author,
             totalPages: totalPages,
@@ -107,35 +145,40 @@ bookForm.addEventListener("submit", function (event) {
             cover: cover
         };
 
-        books.push(book);
-        alert(`"${book.title}" added successfully! 📚`);
-    }
+        try {
+            const response = await fetch(
+                `http://localhost:8080/books/${editingBookId}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(updatedBook)
+                }
+            );
+            // CHECK IF BACKEND REQUEST FAILED
+            if (!response.ok) {
+                throw new Error("Failed to update book.");
+            }
+            const savedBook = await response.json();
 
-    // EDIT EXISTING BOOK
-    else {
-        const book = books.find(function (book) {
-            return book.id === editingBookId;
-        });
+            const index = books.findIndex(function (book) {
+                return book.id === editingBookId;
+            });
 
-        if (!book) {
-            alert("Book not found.");
+            books[index] = savedBook;
+
+            alert(`"${savedBook.title}" updated successfully! ✏️`);
+
+            editingBookId = null;
+
+        } catch (error) {
+            console.error("Error updating book:", error);
+            alert("Could not update book.");
             return;
         }
-
-        book.title = title;
-        book.author = author;
-        book.totalPages = totalPages;
-        book.currentPage = finalCurrentPage;
-        book.status = status;
-        book.cover = cover;
-
-        alert(`"${book.title}" updated successfully! ✏️`);
-
-        editingBookId = null;
     }
-
     // SAVE AND UPDATE APP
-    saveBooks();
     displayCurrentlyReading();
     displayLibrary(currentFilter, searchInput.value.trim());
     updateStats();
@@ -150,13 +193,6 @@ bookForm.addEventListener("submit", function (event) {
     libraryPage.classList.add("hidden");
     dashboardPage.classList.remove("hidden");
 });
-
-
-// SAVE BOOKS
-function saveBooks() {
-    localStorage.setItem("books", JSON.stringify(books));
-}
-
 
 // CALCULATE PROGRESS
 function calculateProgress(book) {
@@ -345,7 +381,7 @@ function displayLibrary(filter = currentFilter, searchText = "") {
 
 
 // UPDATE PROGRESS
-function updateProgress(bookId) {
+async function updateProgress(bookId) {
     const book = books.find(function (book) {
         return book.id === bookId;
     });
@@ -383,9 +419,36 @@ function updateProgress(bookId) {
     if (pageNumber === book.totalPages) {
         book.status = "finished";
     }
+    try {
+        const response = await fetch(
+            `http://localhost:8080/books/${bookId}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(book)
+            }
+        );
+        // CHECK IF BACKEND REQUEST FAILED
+        if (!response.ok) {
+            throw new Error("Failed to update progress.");
+        }
+        const updatedBook = await response.json();
+
+        const index = books.findIndex(function (book) {
+            return book.id === bookId;
+        });
+
+        books[index] = updatedBook;
+
+    } catch (error) {
+        console.error("Error updating progress:", error);
+        alert("Could not update reading progress.");
+        return;
+    }
 
     // SAVE AND REFRESH
-    saveBooks();
     displayCurrentlyReading();
     displayLibrary(currentFilter, searchInput.value.trim());
     updateStats();
@@ -428,7 +491,7 @@ function editBook(bookId) {
 
 
 // DELETE BOOK
-function deleteBook(bookId) {
+async function deleteBook(bookId) {
     const book = books.find(function (book) {
         return book.id === bookId;
     });
@@ -437,6 +500,7 @@ function deleteBook(bookId) {
         alert("Book not found.");
         return;
     }
+
 
     // CONFIRM DELETE
     const shouldDelete = confirm(
@@ -447,13 +511,31 @@ function deleteBook(bookId) {
         return;
     }
 
+    try {
+        const response = await fetch(
+            `http://localhost:8080/books/${bookId}`,
+            {
+                method: "DELETE"
+            }
+        );
+
+        // CHECK IF BACKEND REQUEST FAILED
+        if (!response.ok) {
+            throw new Error("Failed to delete book.");
+        }
+
+    } catch (error) {
+        console.error("Error deleting book:", error);
+        alert("Could not delete book.");
+        return;
+    }
     // REMOVE BOOK
     books = books.filter(function (book) {
         return book.id !== bookId;
     });
 
     // SAVE AND REFRESH
-    saveBooks();
+
     displayCurrentlyReading();
     displayLibrary(currentFilter, searchInput.value.trim());
     updateStats();
@@ -525,7 +607,10 @@ searchInput.addEventListener("input", function () {
 async function loadBooks() {
     try {
         const response = await fetch("http://localhost:8080/books");
-
+        // CHECK IF BACKEND REQUEST FAILED
+        if (!response.ok) {
+            throw new Error("Failed to load books.");
+        }
         books = await response.json();
 
         displayCurrentlyReading();

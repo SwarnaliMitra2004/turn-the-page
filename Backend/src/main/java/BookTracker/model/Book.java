@@ -20,13 +20,14 @@ public class Book {
     private String status;
     private int currentPage;
     private int totalPages;
+    private String cover;
 
     // DEFAULT CONSTRUCTOR
     public Book() {
     }
 
     // PARAMETERIZED CONSTRUCTOR
-    public Book(Long id, String title, String author, String status, int currentPage, int totalPages) {
+    public Book(Long id, String title, String author, String status, int currentPage, int totalPages, String cover) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -82,5 +83,14 @@ public class Book {
 
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
+    }
+
+    // COVER
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 }

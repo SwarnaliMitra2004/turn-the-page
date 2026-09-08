@@ -42,6 +42,7 @@ public Book updateBook(Long id, Book updatedBook) {
     existingBook.setStatus(updatedBook.getStatus());
     existingBook.setCurrentPage(updatedBook.getCurrentPage());
     existingBook.setTotalPages(updatedBook.getTotalPages());
+    existingBook.setCover(updatedBook.getCover());
 
     return bookRepository.save(existingBook);
 }
