@@ -722,3 +722,8 @@ main > section > h2 {
 }
 
 }
+.stat-card {
+    /* DASHBOARD STAT CARDS */
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
