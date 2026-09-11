@@ -5,369 +5,444 @@
     <meta charset="UTF-8">
 
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
     >
 
     <title>My Book Tracker</title>
 
+    <!-- ---------------- GOOGLE FONTS ---------------- -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+            rel="stylesheet"
+    >
+
     <!-- ---------------- STYLESHEET ---------------- -->
+
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 
 
 <body>
-    <!-- ---------------- NAVIGATION BAR ------------------ -->
 
-    <nav class="navbar">
+<!-- ---------------- NAVIGATION BAR ---------------- -->
 
-        <h1>📚 Book Tracker</h1>
+<nav class="navbar">
 
-        <div class="nav-links">
+    <h1>📚 Book Tracker</h1>
 
-            <button id="dashboard-btn">
-                Dashboard
-            </button>
+    <div class="nav-links">
 
-            <button id="library-btn">
-                My Library
-            </button>
+        <button id="dashboard-btn">
+            Dashboard
+        </button>
 
-            <button id="add-book-nav-btn">
-                Add Book
-            </button>
+        <button id="library-btn">
+            My Library
+        </button>
+
+        <button id="add-book-nav-btn">
+            Add Book
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- ---------------- MAIN CONTENT ---------------- -->
+
+<main>
+
+    <!-- ---------------- DASHBOARD PAGE ---------------- -->
+
+    <section id="dashboard-page">
+
+        <!-- ---------------- DASHBOARD HEADER ---------------- -->
+
+        <div class="dashboard-upgrade">
+
+            <div>
+
+                <p class="dashboard-eyebrow">
+
+                </p>
+
+                <h2>
+                    My Reading Dashboard
+                </h2>
+
+                <p class="dashboard-subtitle">
+                    Track your books and your reading journey.
+                </p>
+
+            </div>
 
         </div>
 
-    </nav>
 
-    <!-- ---------------- MAIN CONTENT -------------------- -->
+        <!-- ---------------- DASHBOARD STATS ---------------- -->
 
-    <main>
+        <section class="stats">
 
-        <!-- ---------------- DASHBOARD PAGE ------------------ -->
+            <!-- TOTAL BOOKS -->
 
-        <section id="dashboard-page">
+            <div class="stat-card" id="total-books-card">
 
-            <h2>My Reading Dashboard</h2>
+                <h3>Total Books</h3>
 
-            <p class="dashboard-subtitle">
-                Track your books and your reading journey.
-            </p>
+                <p id="total-books">
+                    0
+                </p>
 
-
-            <!-- ---------------- DASHBOARD STATS ---------------- -->
-
-            <section class="stats">
-
-                <!-- TOTAL BOOKS -->
-                <div class="stat-card" id="total-books-card">
-
-                    <h3>Total Books</h3>
-
-                    <p id="total-books">
-                        0
-                    </p>
-
-                </div>
+            </div>
 
 
-                <!-- CURRENTLY READING -->
-                <div class="stat-card" id="reading-card">
+            <!-- CURRENTLY READING -->
 
-                    <h3>Currently Reading</h3>
+            <div class="stat-card" id="reading-card">
 
-                    <p id="reading-count">
-                        0
-                    </p>
+                <h3>Currently Reading</h3>
 
-                </div>
+                <p id="reading-count">
+                    0
+                </p>
 
-
-                <!-- FINISHED -->
-                <div class="stat-card" id="finished-card">
-
-                    <h3>Finished</h3>
-
-                    <p id="finished-count">
-                        0
-                    </p>
-
-                </div>
+            </div>
 
 
-                <!-- WANT TO READ -->
-                <div class="stat-card" id="want-to-read-card">
+            <!-- FINISHED -->
 
-                    <h3>Want to Read</h3>
+            <div class="stat-card" id="finished-card">
 
-                    <p id="want-count">
-                        0
-                    </p>
+                <h3>Finished</h3>
 
-                </div>
+                <p id="finished-count">
+                    0
+                </p>
 
-            </section>
-            <!-- ---------------- CURRENTLY READING ---------------- -->
-
-            <section class="currently-reading">
-
-                <div class="section-header">
-
-                    <h2>
-                        Currently Reading
-                    </h2>
-
-                    <button id="view-all-btn">
-                        View All
-                    </button>
-
-                </div>
+            </div>
 
 
-                <!--
-                    JavaScript automatically adds
-                    currently-reading books here
-                -->
+            <!-- WANT TO READ -->
 
-                <div id="currently-reading-list"></div>
+            <div class="stat-card" id="want-to-read-card">
 
-            </section>
+                <h3>Want to Read</h3>
+
+                <p id="want-count">
+                    0
+                </p>
+
+            </div>
 
         </section>
 
-        <!-- ---------------- MY LIBRARY PAGE ----------------- -->
 
-        <section
-            id="library-page"
-            class="hidden"
-        >
+        <!-- ---------------- READING JOURNEY ---------------- -->
+
+        <section class="reading-journey">
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="dashboard-eyebrow">
+                        READING JOURNEY
+                    </p>
+
+                    <h2>
+                        Books Finished This Year
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- ---------------- READING CHART ---------------- -->
+
+            <div class="reading-chart-card">
+
+                <!--
+                    JavaScript will generate
+                    the monthly reading graph here
+                -->
+
+                <canvas id="reading-chart"></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- ---------------- CURRENTLY READING ---------------- -->
+
+        <section class="currently-reading">
 
             <div class="section-header">
 
                 <h2>
-                    My Library 📚
+                    Currently Reading
                 </h2>
 
-            </div>
-
-            <!-- ---------------- LIBRARY SEARCH ---------------- -->
-
-<div class="library-search">
-
-    <input
-        type="text"
-        id="search-input"
-        placeholder="Search by title or author..."
-    >
-
-</div>
-
-            <!-- ---------------- LIBRARY FILTER BUTTONS ---------------- -->
-
-            <div class="library-filters">
-
-                <button
-                    class="filter-btn active"
-                    data-filter="all"
-                >
-                    All
-                </button>
-
-
-                <button
-                    class="filter-btn"
-                    data-filter="reading"
-                >
-                    Reading
-                </button>
-
-
-                <button
-                    class="filter-btn"
-                    data-filter="finished"
-                >
-                    Finished
-                </button>
-
-
-                <button
-                    class="filter-btn"
-                    data-filter="want-to-read"
-                >
-                    Want to Read
+                <button id="view-all-btn">
+                    View All
                 </button>
 
             </div>
 
 
             <!--
-                JavaScript automatically
-                adds library books here
+                JavaScript automatically adds
+                currently-reading books here
             -->
 
-            <div id="library-list"></div>
+            <div id="currently-reading-list"></div>
 
         </section>
 
-        <!-- ---------------- ADD BOOK PAGE ------------------- -->
+    </section>
 
-        <section
-            id="add-book-page"
+
+    <!-- ---------------- MY LIBRARY PAGE ---------------- -->
+
+    <section
+            id="library-page"
             class="hidden"
-        >
+    >
+
+        <div class="section-header">
 
             <h2>
-                Add a Book 📖
+                My Library 📚
             </h2>
 
-
-            <!-- ---------------- ADD BOOK FORM ---------------- -->
-
-            <form id="book-form">
+        </div>
 
 
-                <!-- ---------------- BOOK TITLE ---------------- -->
+        <!-- ---------------- LIBRARY SEARCH ---------------- -->
 
-                <div class="form-group">
+        <div class="library-search">
 
-                    <label for="title">
-                        Book Title
-                    </label>
+            <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Search by title or author..."
+            >
 
-                    <input
+        </div>
+
+
+        <!-- ---------------- LIBRARY FILTER BUTTONS ---------------- -->
+
+        <div class="library-filters">
+
+            <button
+                    class="filter-btn active"
+                    data-filter="all"
+            >
+                All
+            </button>
+
+
+            <button
+                    class="filter-btn"
+                    data-filter="reading"
+            >
+                Reading
+            </button>
+
+
+            <button
+                    class="filter-btn"
+                    data-filter="finished"
+            >
+                Finished
+            </button>
+
+
+            <button
+                    class="filter-btn"
+                    data-filter="want-to-read"
+            >
+                Want to Read
+            </button>
+
+        </div>
+
+
+        <!--
+            JavaScript automatically
+            adds library books here
+        -->
+
+        <div id="library-list"></div>
+
+    </section>
+
+
+    <!-- ---------------- ADD BOOK PAGE ---------------- -->
+
+    <section
+            id="add-book-page"
+            class="hidden"
+    >
+
+        <h2>
+            Add a Book 📖
+        </h2>
+
+
+        <!-- ---------------- ADD BOOK FORM ---------------- -->
+
+        <form id="book-form">
+
+
+            <!-- ---------------- BOOK TITLE ---------------- -->
+
+            <div class="form-group">
+
+                <label for="title">
+                    Book Title
+                </label>
+
+                <input
                         type="text"
                         id="title"
                         placeholder="e.g. Heir of Fire"
                         required
-                    >
+                >
 
-                </div>
+            </div>
 
 
+            <!-- ---------------- AUTHOR ---------------- -->
 
-                <!-- ---------------- AUTHOR ---------------- -->
+            <div class="form-group">
 
-                <div class="form-group">
+                <label for="author">
+                    Author
+                </label>
 
-                    <label for="author">
-                        Author
-                    </label>
-
-                    <input
+                <input
                         type="text"
                         id="author"
                         placeholder="e.g. Sarah J. Maas"
                         required
-                    >
+                >
 
-                </div>
+            </div>
 
 
+            <!-- ---------------- TOTAL PAGES ---------------- -->
 
-                <!-- ---------------- TOTAL PAGES ---------------- -->
+            <div class="form-group">
 
-                <div class="form-group">
+                <label for="total-pages">
+                    Total Pages
+                </label>
 
-                    <label for="total-pages">
-                        Total Pages
-                    </label>
-
-                    <input
+                <input
                         type="number"
                         id="total-pages"
                         placeholder="565"
                         min="1"
                         required
-                    >
+                >
 
-                </div>
+            </div>
 
 
+            <!-- ---------------- CURRENT PAGE ---------------- -->
 
-                <!-- ---------------- CURRENT PAGE ---------------- -->
+            <div class="form-group">
 
-                <div class="form-group">
+                <label for="current-page">
+                    Current Page
+                </label>
 
-                    <label for="current-page">
-                        Current Page
-                    </label>
-
-                    <input
+                <input
                         type="number"
                         id="current-page"
                         placeholder="0"
                         min="0"
-                    >
+                >
 
-                </div>
-
-
-
-                <!-- ---------------- READING STATUS ---------------- -->
-
-                <div class="form-group">
-
-                    <label for="status">
-                        Reading Status
-                    </label>
-
-                    <select id="status">
-
-                        <option value="want-to-read">
-                            Want to Read
-                        </option>
-
-                        <option value="reading">
-                            Currently Reading
-                        </option>
-
-                        <option value="finished">
-                            Finished
-                        </option>
-
-                    </select>
-
-                </div>
+            </div>
 
 
+            <!-- ---------------- READING STATUS ---------------- -->
 
-                <!-- ---------------- BOOK COVER URL ---------------- -->
+            <div class="form-group">
 
-                <div class="form-group">
+                <label for="status">
+                    Reading Status
+                </label>
 
-                    <label for="cover">
-                        Book Cover URL
-                    </label>
+                <select id="status">
 
-                    <input
+                    <option value="want-to-read">
+                        Want to Read
+                    </option>
+
+                    <option value="reading">
+                        Currently Reading
+                    </option>
+
+                    <option value="finished">
+                        Finished
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ---------------- BOOK COVER URL ---------------- -->
+
+            <div class="form-group">
+
+                <label for="cover">
+                    Book Cover URL
+                </label>
+
+                <input
                         type="url"
                         id="cover"
                         placeholder="https://..."
-                    >
+                >
 
-                </div>
+            </div>
 
 
+            <!-- ---------------- SUBMIT BUTTON ---------------- -->
 
-                <!-- ---------------- SUBMIT BUTTON ---------------- -->
-
-                <button
+            <button
                     type="submit"
                     class="add-book-btn"
-                >
-                    + Add Book
-                </button>
+            >
+                + Add Book
+            </button>
 
-            </form>
+        </form>
 
-        </section>
+    </section>
 
-    </main>
+</main>
 
-    <!-- ---------------- JAVASCRIPT ---------------------- -->
+<!-- ---------------- CHART.JS ---------------- -->
 
-    <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- ---------------- JAVASCRIPT ---------------- -->
+
+<script src="script.js"></script>
 
 </body>
 
